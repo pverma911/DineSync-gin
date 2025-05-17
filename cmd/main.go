@@ -1,8 +1,6 @@
 package main
 
-import (
-    "myapp/internal/router"
-)
+import "github.com/pverma911/go-gin-tonic/internal/router"
 
 func main() {
     r := router.SetupRouter()
