@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-    r := router.SetupRouter()
     db:=config.InitializeDb()
     config.CreateOrUpdateTables(db)
+    r := router.SetupRouter(db)
     r.Run("127.0.0.1:8080")
 }

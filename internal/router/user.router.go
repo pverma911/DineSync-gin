@@ -17,7 +17,7 @@ func(u UserRoutes) RegisterUserRoutes(r *gin.RouterGroup) {
 
 	userRoutes := r.Group("/users")
 	{
-		userRoutes.GET("/", u.userHandler.GetUsers)
+		// userRoutes.GET("/", u.userHandler.GetUsers)
 		userRoutes.GET("/:id",  u.userHandler.GetUserByID)
 		userRoutes.POST("/",  u.userHandler.CreateUser)
 		userRoutes.PUT("/:id",  u.userHandler.UpdateUser)
