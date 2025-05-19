@@ -16,7 +16,7 @@ var errorCodes []int = []int{400, 401, 403, 404, 412}
 
 func SendServiceResponse(statusCode int, data gin.H, message string) ServiceResponse {
 	return ServiceResponse{
-		Success:    helpers.DoesInclude(statusCode, errorCodes),
+		Success:    !helpers.DoesInclude(statusCode, errorCodes),
 		Data:       data,
 		Message:    message,
 		StatusCode: statusCode,
