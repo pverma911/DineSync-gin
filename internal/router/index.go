@@ -3,16 +3,19 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/pverma911/go-gin-tonic/internal/handler"
+	"github.com/pverma911/go-gin-tonic/internal/repository"
 	"github.com/pverma911/go-gin-tonic/internal/service"
+	"gorm.io/gorm"
 )
 
-func SetupRouter() *gin.Engine {
+func SetupRouter(db *gorm.DB) *gin.Engine {
 	r := gin.Default()
 
 	router:=r.Group("/api/v1")
 
  // Create service, handler, and routes
-    userService := &service.UserService{}
+    userRepo := repository.NewUserRepository(db)
+    userService := service.NewUserService(userRepo)
     userHandler := handler.NewUserHandler(userService)
     NewUserRoutes(userHandler).RegisterUserRoutes(router)
 

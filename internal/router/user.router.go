@@ -6,21 +6,23 @@ import (
 )
 
 type UserRoutes struct {
-    userHandler *handler.UserHandler
+	userHandler *handler.UserHandler
 }
 
 func NewUserRoutes(handler *handler.UserHandler) *UserRoutes {
-    return &UserRoutes{userHandler: handler}
+	return &UserRoutes{userHandler: handler}
 }
 
-func(u UserRoutes) RegisterUserRoutes(r *gin.RouterGroup) {
+func (u UserRoutes) RegisterUserRoutes(r *gin.RouterGroup) {
 
 	userRoutes := r.Group("/users")
 	{
+		// userRoutes.GET("/", u.userHandler.GetUsers)
+		userRoutes.GET("/:id", u.userHandler.GetUserByID)
+		userRoutes.PUT("/:id", u.userHandler.UpdateUser)
+		userRoutes.DELETE("/:id", u.userHandler.DeleteUser)
+		userRoutes.POST("/", u.userHandler.CreateUser)
 		userRoutes.GET("/", u.userHandler.GetUsers)
-		userRoutes.GET("/:id",  u.userHandler.GetUserByID)
-		userRoutes.POST("/",  u.userHandler.CreateUser)
-		userRoutes.PUT("/:id",  u.userHandler.UpdateUser)
-		userRoutes.DELETE("/:id",  u.userHandler.DeleteUser)
+
 	}
 }
