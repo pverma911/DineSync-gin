@@ -11,13 +11,19 @@ import (
 func SetupRouter(db *gorm.DB) *gin.Engine {
 	r := gin.Default()
 
-	router:=r.Group("/api/v1")
+	router := r.Group("/api/v1")
 
- // Create service, handler, and routes
-    userRepo := repository.NewUserRepository(db)
-    userService := service.NewUserService(userRepo)
-    userHandler := handler.NewUserHandler(userService)
-    NewUserRoutes(userHandler).RegisterUserRoutes(router)
+	// Create service, handler, and routes
+	userRepo := repository.NewUserRepository(db)
+	userService := service.NewUserService(userRepo)
+	userHandler := handler.NewUserHandler(userService)
+	NewUserRoutes(userHandler).RegisterUserRoutes(router)
+
+	addressRepo := repository.NewAddressRepository(db)
+	addressService := service.NewAddressService(addressRepo)
+	addressHandler := handler.NewAddressHandler(addressService)
+	addressRoutes := NewAddressRoutes(addressHandler)
+	addressRoutes.RegisterAddressRoutes(router)
 
 	return r
 }
