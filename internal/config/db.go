@@ -20,5 +20,5 @@ func InitializeDb() *gorm.DB {
 }
 
 func CreateOrUpdateTables(db *gorm.DB) {
-	db.AutoMigrate(&model.User{}, &model.Address{})
+	db.AutoMigrate(&model.User{}, &model.Address{}, &model.Customer{})
 }
