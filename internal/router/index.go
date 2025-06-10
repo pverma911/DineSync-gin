@@ -37,5 +37,11 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	menuRoutes := NewMenuRoutes(menuHandler)
 	menuRoutes.RegisterMenuRoutes(router)
 
+	orderRepo := repository.NewOrderRepository(db)
+	orderService := service.NewOrderService(orderRepo)
+	orderHandler := handler.NewOrderHandler(orderService)
+	orderRoutes := NewOrderRoutes(orderHandler)
+	orderRoutes.RegisterOrderRoutes(router)
+
 	return r
 }
