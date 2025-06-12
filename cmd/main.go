@@ -12,5 +12,5 @@ func main() {
     config.CreateOrUpdateTables(db)
     r := router.SetupRouter(db)
     r.Run("127.0.0.1:8080")
-    fmt.Println("Server started")
+    fmt.Println("Server started at port 8088")
 }
