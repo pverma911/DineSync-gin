@@ -24,5 +24,5 @@ func SendServiceResponse(statusCode int, data gin.H, message string) ServiceResp
 }
 
 func SendHandlerResponse(c *gin.Context,statusCode int,data any){
-	c.JSON(statusCode,data)
+	c.JSON(statusCode,data) 
 }
