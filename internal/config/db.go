@@ -13,7 +13,7 @@ func InitializeDb() *gorm.DB {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		log.Fatalf("Error while initializing DB %s", err.Error())
+		log.Fatalf("Error while initializing the DB %s", err.Error())
 	}
 
 	return db
